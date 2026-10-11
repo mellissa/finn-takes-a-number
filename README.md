@@ -22,6 +22,8 @@ Queue events can help, delay, or briefly suggest that the ordeal is over. Choice
 
 Across eight queues, you will experience uniquely Finnish challenges without knowing what quiet complication is waiting next, culminating in the legendary *ämpärijono*—the queue for a free promotional bucket.
 
+The game currently follows one path with a limited set of outcomes. You can queue up ideas for additional scenarios through [GitHub Issues](https://github.com/mellissa/finn-takes-a-number/issues).
+
 ## Install and play
 
 You need a current Node.js LTS release.
