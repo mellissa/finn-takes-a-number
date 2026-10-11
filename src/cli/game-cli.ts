@@ -15,6 +15,10 @@ const WELCOME = `
 
 Eight ordinary Finnish queues stand between you and a modest administrative result.
 
+For newcomers: Finnish errands often begin with a numbered ticket, while silence and
+personal space are treated with care. Sisu means calm determination when circumstances
+are cold, slow, or both. This game is an affectionate exaggeration of those experiences.
+
 Protect your Sisu (quiet determination), keep social discomfort below 100, and reach
 the front before time runs out. Choose an action by entering its number. Some choices
 move you faster; some merely provide an experience. A discreet bribe always costs €3.
