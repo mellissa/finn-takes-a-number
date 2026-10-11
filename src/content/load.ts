@@ -2,21 +2,18 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { GameEngine } from "../core/engine.js";
-import type { QueueActionsFile, RngConfigFile, ScenesFile } from "../core/types.js";
+import { GameEngine } from "../core/game.js";
+import type { GameContent, RngConfigFile } from "../core/types.js";
 
 const contentDir = join(dirname(fileURLToPath(import.meta.url)));
 
 export function createGame(): GameEngine {
-  const scenes = JSON.parse(
-    readFileSync(join(contentDir, "scenes.json"), "utf-8"),
-  ) as ScenesFile;
+  const content = JSON.parse(
+    readFileSync(join(contentDir, "game.json"), "utf-8"),
+  ) as GameContent;
   const rng = JSON.parse(
-    readFileSync(join(contentDir, "rng.json"), "utf-8"),
+    readFileSync(join(contentDir, "finnish-rng.json"), "utf-8"),
   ) as RngConfigFile;
-  const queueActions = JSON.parse(
-    readFileSync(join(contentDir, "queue-actions.json"), "utf-8"),
-  ) as QueueActionsFile;
 
-  return new GameEngine(scenes, rng, queueActions);
+  return new GameEngine(content, rng);
 }

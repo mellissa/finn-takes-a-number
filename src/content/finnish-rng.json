@@ -1,0 +1,34 @@
+{
+  "steady": {
+    "type": "range",
+    "min": 1,
+    "max": 10,
+    "successAtOrAbove": 4,
+    "successMessage": "The number display advances by one. Nobody celebrates.",
+    "failMessage": "The display remains unchanged. It is functioning as designed."
+  },
+  "uncertain": {
+    "type": "range",
+    "min": 1,
+    "max": 10,
+    "successAtOrAbove": 5,
+    "successMessage": "Someone is called. You move one position closer to administrative truth.",
+    "failMessage": "A door opens, but only for a member of staff carrying coffee."
+  },
+  "busy": {
+    "type": "range",
+    "min": 1,
+    "max": 10,
+    "successAtOrAbove": 6,
+    "successMessage": "The queue advances with disciplined reluctance.",
+    "failMessage": "Something ahead requires a supervisor and a smaller receipt."
+  },
+  "final": {
+    "type": "range",
+    "min": 1,
+    "max": 10,
+    "successAtOrAbove": 7,
+    "successMessage": "A desk becomes available. Progress remains technically possible.",
+    "failMessage": "The system is thinking. Everyone respects its privacy."
+  }
+}

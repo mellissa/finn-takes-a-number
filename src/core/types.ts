@@ -1,93 +1,103 @@
 export type GameOutcome = "win" | "lose" | null;
 
+export interface Term {
+  finnish: string;
+  explanation: string;
+}
+
+export interface StatChanges {
+  position?: number;
+  sisu?: number;
+  discomfort?: number;
+  minutes?: number;
+  euros?: number;
+}
+
+export interface QueueEvent extends StatChanges {
+  message: string;
+  weight: number;
+  falseEnding?: boolean;
+}
+
+export interface Scenario {
+  id: string;
+  title: string;
+  location: string;
+  intro: string;
+  terms?: Term[];
+  peopleAhead: number;
+  minutes: number;
+  advanceRoll: string;
+  completion: string;
+  transition: string;
+  events: QueueEvent[];
+}
+
+export interface ActionRequirement {
+  minEuros?: number;
+  maxDiscomfort?: number;
+}
+
+export interface QueueAction extends StatChanges {
+  id: string;
+  label: string;
+  feedback: string;
+  advance?: boolean;
+  requires?: ActionRequirement;
+}
+
+export type AchievementTrigger =
+  | "firstQueue"
+  | "lowSisu"
+  | "lowDiscomfort"
+  | "threeBribes"
+  | "allQueues";
+
+export interface Achievement {
+  id: string;
+  name: string;
+  description: string;
+  trigger: AchievementTrigger;
+  threshold?: number;
+}
+
+export interface GameContent {
+  title: string;
+  initialState: {
+    sisu: number;
+    discomfort: number;
+    euros: number;
+  };
+  tuning: {
+    maxSisu: number;
+    maxDiscomfort: number;
+    bribeCost: number;
+    eventChance: number;
+    betweenQueueSisu: number;
+    betweenQueueDiscomfort: number;
+  };
+  actions: QueueAction[];
+  achievements: Achievement[];
+  scenarios: Scenario[];
+}
+
 export interface GameState {
-  currentSceneId: string;
-  health: number;
-  gold: number;
-  inventory: string[];
-  flags: Record<string, string | number | boolean>;
+  scenarioIndex: number;
+  position: number;
+  sisu: number;
+  discomfort: number;
+  minutes: number;
+  euros: number;
+  bribes: number;
+  completedQueues: number;
+  falseEndings: number;
+  seenFalseEndings: string[];
+  achievements: string[];
   lastMessage: string;
+  lastEvent: string;
+  pendingAdvance: boolean;
   outcome: GameOutcome;
 }
-
-export interface ChoiceRequires {
-  item?: string;
-  flag?: string;
-  flagEquals?: string | number | boolean;
-  minGold?: number;
-  maxGold?: number;
-  minHealth?: number;
-  minMoney?: number;
-}
-
-export interface QueueSceneConfig {
-  advanceRoll: string;
-  completeScene: string;
-  finishLabel: string;
-}
-
-export interface QueueAction {
-  id: number;
-  label: string;
-  angerWeight: number;
-  npcMessage: string;
-  selfAnger?: number;
-  requires?: ChoiceRequires;
-  effects: Effect[];
-}
-
-export interface QueueActionsFile {
-  maxAnger: number;
-  actions: QueueAction[];
-}
-
-export interface ChoiceOption {
-  id: string;
-  label: string;
-  requires?: ChoiceRequires;
-  effects: Effect[];
-}
-
-export interface Scene {
-  id: string;
-  text: string;
-  choices: Omit<ChoiceOption, "id">[];
-  queue?: QueueSceneConfig;
-  ending?: "win" | "lose";
-}
-
-export interface ScenesFile {
-  title: string;
-  startScene: string;
-  initialState: {
-    health: number;
-    gold: number;
-    inventory: string[];
-    flags?: Record<string, string | number | boolean>;
-  };
-  scenes: Scene[];
-}
-
-export type Effect =
-  | { type: "goto"; scene: string }
-  | { type: "set"; key: string; value: string | number | boolean }
-  | { type: "addItem"; item: string }
-  | { type: "removeItem"; item: string }
-  | { type: "addGold"; amount: number }
-  | { type: "setGold"; amount: number }
-  | { type: "addHealth"; amount: number }
-  | { type: "addAnger"; amount: number }
-  | { type: "addMoney"; amount: number }
-  | { type: "queueAdvance" }
-  | { type: "message"; text: string }
-  | {
-      type: "rng";
-      roll: string;
-      onSuccess?: string;
-      onFail?: string;
-      onResult?: Record<string, string>;
-    }
-  | { type: "end"; outcome: "win" | "lose" };
 
 export interface RangeRngConfig {
   type: "range";
@@ -152,15 +162,22 @@ export interface DisplayChoice {
 
 export interface DisplayState {
   title: string;
+  scenarioTitle: string;
+  location: string;
   sceneText: string;
-  health: number;
-  gold: number;
-  inventory: string[];
+  terms: Term[];
+  position: number;
+  sisu: number;
+  maxSisu: number;
+  discomfort: number;
+  maxDiscomfort: number;
+  minutes: number;
+  euros: number;
   lastMessage: string;
-  lastNpcMessage: string;
+  lastEvent: string;
   outcome: GameOutcome;
   level: number;
-  anger: number;
-  money: number;
-  isQueue: boolean;
+  totalLevels: number;
+  achievements: Achievement[];
+  pendingAdvance: boolean;
 }

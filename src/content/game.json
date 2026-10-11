@@ -1,0 +1,474 @@
+{
+  "title": "Finn Takes a Number",
+  "initialState": {
+    "sisu": 100,
+    "discomfort": 0,
+    "euros": 18
+  },
+  "tuning": {
+    "maxSisu": 100,
+    "maxDiscomfort": 100,
+    "bribeCost": 3,
+    "eventChance": 0.58,
+    "betweenQueueSisu": 7,
+    "betweenQueueDiscomfort": -5
+  },
+  "actions": [
+    {
+      "id": "wait",
+      "label": "Wait without making it anyone's problem",
+      "feedback": "You wait. This is considered a complete activity.",
+      "advance": true,
+      "sisu": -3,
+      "minutes": -5
+    },
+    {
+      "id": "observe",
+      "label": "Study the ticket display very carefully",
+      "feedback": "The red digits remain authoritative.",
+      "advance": true,
+      "sisu": -1,
+      "discomfort": -2,
+      "minutes": -7
+    },
+    {
+      "id": "ask",
+      "label": "Ask whether this is the correct queue",
+      "feedback": "You speak to a stranger. Both of you survive.",
+      "position": -1,
+      "sisu": -2,
+      "discomfort": 11,
+      "minutes": -3,
+      "requires": {
+        "maxDiscomfort": 88
+      }
+    },
+    {
+      "id": "bribe",
+      "label": "Offer a discreet €3 queue arrangement",
+      "feedback": "Three euros change hands. Nobody calls it a bribe.",
+      "position": -1,
+      "discomfort": 14,
+      "minutes": -2,
+      "euros": -3,
+      "requires": {
+        "minEuros": 3,
+        "maxDiscomfort": 82
+      }
+    },
+    {
+      "id": "coffee",
+      "label": "Drink emergency thermos coffee",
+      "feedback": "It is strong, lukewarm, and medicinal.",
+      "sisu": 8,
+      "discomfort": -1,
+      "minutes": -4
+    },
+    {
+      "id": "speak",
+      "label": "Say \"no niin\" and commit to whatever happens",
+      "feedback": "\"No niin\" can mean almost anything. Here it means forward.",
+      "position": -2,
+      "sisu": -7,
+      "discomfort": 18,
+      "minutes": -4,
+      "requires": {
+        "maxDiscomfort": 75
+      }
+    }
+  ],
+  "achievements": [
+    {
+      "id": "number-taken",
+      "name": "Number Taken",
+      "description": "Complete your first Finnish queue.",
+      "trigger": "firstQueue"
+    },
+    {
+      "id": "actual-sisu",
+      "name": "Actual Sisu",
+      "description": "Complete a queue with 20 Sisu or less.",
+      "trigger": "lowSisu",
+      "threshold": 20
+    },
+    {
+      "id": "pleasantly-distant",
+      "name": "Pleasantly Distant",
+      "description": "Complete a queue with social discomfort at 10 or less.",
+      "trigger": "lowDiscomfort",
+      "threshold": 10
+    },
+    {
+      "id": "informal-economy",
+      "name": "Informal Economy",
+      "description": "Make three €3 queue arrangements.",
+      "trigger": "threeBribes"
+    },
+    {
+      "id": "eight-small-victories",
+      "name": "Eight Small Victories",
+      "description": "Survive every queue and receive something technically useful.",
+      "trigger": "allQueues"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "kela",
+      "title": "The Kela Service Centre",
+      "location": "Hakaniemi, Helsinki",
+      "intro": "You need one benefits decision and have brought seventeen pages. Aino at reception gives you ticket B-143. The display shows B-119. Nobody reacts.",
+      "terms": [
+        {
+          "finnish": "Kela",
+          "explanation": "Finland's social insurance institution."
+        },
+        {
+          "finnish": "vuoronumero",
+          "explanation": "a queue or turn number."
+        }
+      ],
+      "peopleAhead": 6,
+      "minutes": 58,
+      "advanceRoll": "steady",
+      "completion": "B-143 appears. Your documents are accepted for further consideration.",
+      "transition": "Carry the stamped uncertainty to Posti",
+      "events": [
+        {
+          "message": "B-143 flashes. You stand. It is B-143 for desks 8–11, while you require desk 12. You sit down with dignity.",
+          "position": 2,
+          "minutes": -4,
+          "sisu": -4,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "Jukka has the wrong attachment. His departure advances everyone and changes nothing.",
+          "position": -1,
+          "weight": 4
+        },
+        {
+          "message": "A printer performs a long private meditation.",
+          "minutes": -6,
+          "sisu": -3,
+          "weight": 3
+        },
+        {
+          "message": "The room achieves total silence. Your discomfort falls to culturally sustainable levels.",
+          "discomfort": -5,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "posti",
+      "title": "The Posti Parcel Counter",
+      "location": "Tammela, Tampere",
+      "intro": "A text says your parcel is ready. The yellow locker says it is at the counter. The counter says take a number.",
+      "terms": [
+        {
+          "finnish": "Posti",
+          "explanation": "the Finnish postal service."
+        }
+      ],
+      "peopleAhead": 7,
+      "minutes": 52,
+      "advanceRoll": "steady",
+      "completion": "The parcel is handed over. It is much larger than the thing you ordered.",
+      "transition": "Balance the parcel on the way to the health centre",
+      "events": [
+        {
+          "message": "Your number appears above the parcel lockers. Those numbers are locker temperatures. Nobody explains this.",
+          "position": 1,
+          "minutes": -5,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "Sari collects six online returns in one transaction. The scanner develops opinions.",
+          "minutes": -7,
+          "sisu": -3,
+          "weight": 3
+        },
+        {
+          "message": "A man produces a perfectly folded paper receipt. Staff visibly respect him.",
+          "position": -1,
+          "weight": 3
+        },
+        {
+          "message": "The parcel machine says 'Kiitos'—thank you—to nobody in particular.",
+          "sisu": 2,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "terveysasema",
+      "title": "The Terveysasema Waiting Room",
+      "location": "Tuira, Oulu",
+      "intro": "You checked in online, at the kiosk, and with a nurse. Mika says this is correct. There are still five people ahead of you.",
+      "terms": [
+        {
+          "finnish": "terveysasema",
+          "explanation": "a municipal health centre."
+        }
+      ],
+      "peopleAhead": 5,
+      "minutes": 47,
+      "advanceRoll": "uncertain",
+      "completion": "Your name is called. The appointment lasts four efficient minutes.",
+      "transition": "Take your advice to the Prisma checkout",
+      "events": [
+        {
+          "message": "A nurse calls your first name. Three people stand. She meant the other one.",
+          "position": 1,
+          "discomfort": 9,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "An elderly woman offers you the seat you were offering her. Negotiations end in a draw.",
+          "discomfort": 6,
+          "sisu": 2,
+          "weight": 3
+        },
+        {
+          "message": "Two patients are called at once. Finnish healthcare briefly resembles velocity.",
+          "position": -2,
+          "weight": 2
+        },
+        {
+          "message": "The wall clock ticks with clinical confidence.",
+          "minutes": -5,
+          "sisu": -2,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "id": "prisma",
+      "title": "The Prisma Checkout",
+      "location": "Seppälä, Jyväskylä",
+      "intro": "You have rye bread, oat milk, and a bucket you do not remember choosing. Every checkout looks equally plausible.",
+      "terms": [
+        {
+          "finnish": "ruisleipä",
+          "explanation": "Finnish rye bread; dense, sour, and structurally reliable."
+        }
+      ],
+      "peopleAhead": 8,
+      "minutes": 43,
+      "advanceRoll": "busy",
+      "completion": "The cashier scans the bucket without comment. It is on sale.",
+      "transition": "Bring the bucket to the bus station",
+      "events": [
+        {
+          "message": "A new checkout opens. You arrive first. It is card-only and the terminal is rebooting.",
+          "position": 2,
+          "minutes": -4,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "A family ahead has separated its groceries with the tiny divider. Civilization persists.",
+          "sisu": 3,
+          "weight": 3
+        },
+        {
+          "message": "The person ahead remembers the loyalty app at the exact final second.",
+          "minutes": -6,
+          "sisu": -2,
+          "weight": 3
+        },
+        {
+          "message": "Checkout four opens. Half your queue migrates with silent precision.",
+          "position": -2,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "matkahuolto",
+      "title": "The Matkahuolto Bus Platform",
+      "location": "Kuopio",
+      "intro": "Wet snow arrives sideways. The timetable says the coach is here. The platform contains only you, Leena, and determined uncertainty.",
+      "terms": [
+        {
+          "finnish": "Matkahuolto",
+          "explanation": "Finland's coach and parcel service."
+        },
+        {
+          "finnish": "räntä",
+          "explanation": "wet sleet that has found your collar."
+        }
+      ],
+      "peopleAhead": 4,
+      "minutes": 36,
+      "advanceRoll": "uncertain",
+      "completion": "The correct coach arrives. The driver nods once, which counts as a welcome.",
+      "transition": "Travel south for the Midsummer provisions",
+      "events": [
+        {
+          "message": "A coach marked Helsinki arrives. Everyone boards. It is the replacement coach to Joensuu. Everyone unboards.",
+          "position": 2,
+          "minutes": -5,
+          "sisu": -3,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "Leena quietly confirms the platform number. This shared speech is now a friendship.",
+          "discomfort": 5,
+          "sisu": 4,
+          "weight": 3
+        },
+        {
+          "message": "The delayed bus becomes less delayed without becoming nearer.",
+          "minutes": -6,
+          "weight": 3
+        },
+        {
+          "message": "Two passengers choose the train instead. They leave without optimism.",
+          "position": -2,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "alko",
+      "title": "Alko Before Juhannus",
+      "location": "Turku",
+      "intro": "It is the afternoon before Midsummer. You require one bottle for the cottage. Finland appears to require all the others.",
+      "terms": [
+        {
+          "finnish": "Alko",
+          "explanation": "Finland's state-owned alcoholic drinks retailer."
+        },
+        {
+          "finnish": "Juhannus",
+          "explanation": "Midsummer, traditionally observed near a lake and away from email."
+        }
+      ],
+      "peopleAhead": 10,
+      "minutes": 40,
+      "advanceRoll": "busy",
+      "completion": "Your bottle is bagged. The cashier wishes you a good Juhannus with professional foresight.",
+      "transition": "Proceed toward the public sauna",
+      "events": [
+        {
+          "message": "The queue reaches the door. Outside is another, older queue. It has seniority.",
+          "position": 3,
+          "minutes": -4,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "Pekka chooses wine by reading every shelf label. Thoroughness is free.",
+          "minutes": -6,
+          "sisu": -3,
+          "weight": 3
+        },
+        {
+          "message": "A second till opens. Nobody runs. Everyone moves extremely purposefully.",
+          "position": -3,
+          "weight": 2
+        },
+        {
+          "message": "Someone says 'moi' to an acquaintance and then joins a different queue to avoid conversation.",
+          "discomfort": -4,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "sauna",
+      "title": "The Public Sauna Turn",
+      "location": "Löyly, Helsinki",
+      "intro": "The changing room is full. The sauna is fuller. A handwritten list governs entry with greater force than statute.",
+      "terms": [
+        {
+          "finnish": "löyly",
+          "explanation": "the steam and heat produced by throwing water on sauna stones."
+        }
+      ],
+      "peopleAhead": 6,
+      "minutes": 34,
+      "advanceRoll": "busy",
+      "completion": "The door opens. There is exactly enough bench for one reserved Finn.",
+      "transition": "Cool down on the way to the final office",
+      "events": [
+        {
+          "message": "A group leaves. You enter. This is the smoke sauna queue; your towel is registered for the other one.",
+          "position": 2,
+          "discomfort": 8,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "Kari adds water to the stones. Conversation becomes physically impossible.",
+          "discomfort": -6,
+          "sisu": 3,
+          "weight": 3
+        },
+        {
+          "message": "A tourist asks about swimwear etiquette. Seven people inspect the floor.",
+          "discomfort": 7,
+          "minutes": -3,
+          "weight": 3
+        },
+        {
+          "message": "Three regulars depart at once, having completed an invisible schedule.",
+          "position": -3,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "id": "migri",
+      "title": "The Migri Service Point",
+      "location": "Espoo",
+      "intro": "Your final appointment is to prove that you attended your final appointment. Your folder is blue. Everyone else's folder is also blue.",
+      "terms": [
+        {
+          "finnish": "Migri",
+          "explanation": "the Finnish Immigration Service."
+        },
+        {
+          "finnish": "selvä",
+          "explanation": "clear, understood, or settled—depending on how brave you feel."
+        }
+      ],
+      "peopleAhead": 9,
+      "minutes": 45,
+      "advanceRoll": "final",
+      "completion": "Your identity is confirmed. You receive a receipt confirming that confirmation may later be confirmed.",
+      "transition": "Accept the result",
+      "events": [
+        {
+          "message": "Your number appears. The clerk closes the desk for lunch beneath it. The number remains as a memorial.",
+          "position": 2,
+          "minutes": -7,
+          "sisu": -5,
+          "weight": 1,
+          "falseEnding": true
+        },
+        {
+          "message": "A family has every document in the requested order. The queue experiences hope.",
+          "position": -2,
+          "sisu": 3,
+          "weight": 2
+        },
+        {
+          "message": "The booking system requests a booking reference for the booking system.",
+          "minutes": -6,
+          "discomfort": 4,
+          "weight": 3
+        },
+        {
+          "message": "The security guard points to the correct desk before anyone asks. A minor national miracle.",
+          "position": -1,
+          "weight": 2
+        }
+      ]
+    }
+  ]
+}
