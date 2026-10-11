@@ -20,18 +20,7 @@ Your decisions affect five connected pressures:
 
 Queue events can help, delay, or briefly suggest that the ordeal is over. Choices, random surprises, false endings, and unlockable achievements make repeated runs different while keeping each situation recognisably Finnish.
 
-## The eight queues
-
-These descriptions introduce the settings without revealing their surprises:
-
-1. **The Kela Service Centre, Helsinki** — take a number and present a carefully assembled benefits application.
-2. **The Posti Parcel Counter, Tampere** — reconcile a collection message with the physical location of a parcel.
-3. **The Terveysasema Waiting Room, Oulu** — wait for a short health-centre appointment under a very confident clock.
-4. **The Prisma Checkout, Jyväskylä** — choose among several equally plausible supermarket lines.
-5. **The Matkahuolto Bus Platform, Kuopio** — locate the correct coach while *räntä* (wet sleet) locates you.
-6. **Alko Before Juhannus, Turku** — obtain modest Midsummer provisions alongside the rest of Finland.
-7. **The Public Sauna Turn, Helsinki** — respect the handwritten list and wait for *löyly* (sauna steam and heat).
-8. **The Migri Service Point, Espoo** — attend a final appointment with a blue folder and measured optimism.
+Across eight queues, you will experience uniquely Finnish challenges without knowing what quiet complication is waiting next.
 
 ## Install and play
 
