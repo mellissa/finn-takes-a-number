@@ -1,0 +1,118 @@
+{
+  "maxAnger": 100,
+  "actions": [
+    {
+      "id": 1,
+      "label": "Cut the line",
+      "angerWeight": 1,
+      "npcMessage": "Someone slips in ahead of you without a word.",
+      "effects": [
+        {
+          "type": "rng",
+          "roll": "cut_line",
+          "onSuccess": "addGold:-1",
+          "onFail": "addGold:1"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Wait patiently",
+      "angerWeight": 2,
+      "npcMessage": "Someone near you waits quietly, tapping their foot.",
+      "effects": [{ "type": "queueAdvance" }]
+    },
+    {
+      "id": 3,
+      "label": "Wait patiently but become angry",
+      "angerWeight": 3,
+      "npcMessage": "A stranger exhales loudly, radiating quiet fury.",
+      "selfAnger": 3,
+      "effects": [{ "type": "queueAdvance" }, { "type": "addAnger", "amount": 3 }]
+    },
+    {
+      "id": 4,
+      "label": "Bribe people with money",
+      "angerWeight": 4,
+      "npcMessage": "Someone ahead waves a crumpled bill and whispers a deal.",
+      "requires": { "minMoney": 3 },
+      "effects": [
+        { "type": "addMoney", "amount": -3 },
+        { "type": "addGold", "amount": -1 },
+        { "type": "message", "text": "You slide a few dollars forward. The line budges." }
+      ]
+    },
+    {
+      "id": 5,
+      "label": "Bribe people with candy",
+      "angerWeight": 5,
+      "npcMessage": "A person ahead offers candy to the crowd like a peace treaty.",
+      "requires": { "item": "candy" },
+      "effects": [
+        { "type": "removeItem", "item": "candy" },
+        { "type": "addGold", "amount": -1 },
+        { "type": "message", "text": "You pass out candy. Spirits lift. The line moves." }
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Cut the line yourself",
+      "angerWeight": 6,
+      "npcMessage": "Someone shoves past you with zero shame.",
+      "effects": [
+        {
+          "type": "rng",
+          "roll": "cut_line_yourself",
+          "onSuccess": "addGold:-2",
+          "onFail": "addGold:2,addAnger:4"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "label": "Scream incoherently",
+      "angerWeight": 7,
+      "npcMessage": "Someone screams gibberish. The whole line flinches.",
+      "selfAnger": 5,
+      "effects": [
+        { "type": "addAnger", "amount": 5 },
+        { "type": "addHealth", "amount": -5 },
+        { "type": "message", "text": "You let out an incoherent scream. Everyone stares." }
+      ]
+    },
+    {
+      "id": 8,
+      "label": "Listen to music silently",
+      "angerWeight": 8,
+      "npcMessage": "Someone bobs their head to silent earbuds. You only notice the twitching.",
+      "effects": [
+        { "type": "addHealth", "amount": 3 },
+        { "type": "queueAdvance" }
+      ]
+    },
+    {
+      "id": 9,
+      "label": "Listen to music with no headphones",
+      "angerWeight": 9,
+      "npcMessage": "Someone blasts music from their phone speaker. You hear every lyric.",
+      "selfAnger": 4,
+      "effects": [
+        { "type": "addAnger", "amount": 4 },
+        { "type": "addHealth", "amount": -4 },
+        { "type": "message", "text": "Your music fills the queue. Heads turn." }
+      ]
+    },
+    {
+      "id": 10,
+      "label": "FaceTime with no headphones",
+      "angerWeight": 10,
+      "npcMessage": "Someone starts a speakerphone FaceTime about their cousin's wedding.",
+      "selfAnger": 6,
+      "effects": [
+        { "type": "addAnger", "amount": 6 },
+        { "type": "addHealth", "amount": -6 },
+        { "type": "message", "text": "You FaceTime on speaker. The entire line hears both sides." }
+      ]
+    }
+  ]
+}
