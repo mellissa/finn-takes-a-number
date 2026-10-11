@@ -20,7 +20,7 @@ Your decisions affect five connected pressures:
 
 Queue events can help, delay, or briefly suggest that the ordeal is over. Choices, random surprises, false endings, and unlockable achievements make repeated runs different while keeping each situation recognisably Finnish.
 
-Across eight queues, you will experience uniquely Finnish challenges without knowing what quiet complication is waiting next.
+Across eight queues, you will experience uniquely Finnish challenges without knowing what quiet complication is waiting next, culminating in the legendary *ämpärijono*—the queue for a free promotional bucket.
 
 ## Install and play
 

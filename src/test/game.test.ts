@@ -14,6 +14,8 @@ const rng = JSON.parse(
 const noEvent = () => 0.99;
 
 assert.equal(content.scenarios.length, 8);
+assert.equal(content.scenarios.at(-1)?.id, "amparijono");
+assert.equal(content.scenarios.at(-1)?.title, "Ämpärijono: The Final Queue");
 assert.equal(content.tuning.bribeCost, 3);
 assert.equal(content.actions.find((action) => action.id === "bribe")?.euros, -3);
 assert.ok(content.scenarios.every((scenario) => scenario.peopleAhead > 0));

@@ -423,50 +423,55 @@
       ]
     },
     {
-      "id": "migri",
-      "title": "The Migri Service Point",
-      "location": "Espoo",
-      "intro": "Your final appointment is to prove that you attended your final appointment. Your folder is blue. Everyone else's folder is also blue.",
+      "id": "amparijono",
+      "title": "Ämpärijono: The Final Queue",
+      "location": "A hardware-store car park, Vantaa",
+      "intro": "It is 06:47. The shop opens at nine. Nobody needs another bucket, but the first hundred visitors receive one free. Finland has assembled.",
       "terms": [
         {
-          "finnish": "Migri",
-          "explanation": "the Finnish Immigration Service."
+          "finnish": "ämpärijono",
+          "explanation": "a queue for a free promotional bucket; a cherished Finnish test of priorities."
         },
         {
-          "finnish": "selvä",
-          "explanation": "clear, understood, or settled—depending on how brave you feel."
+          "finnish": "ämpäri",
+          "explanation": "a bucket."
         }
       ],
-      "peopleAhead": 9,
-      "minutes": 45,
+      "peopleAhead": 14,
+      "minutes": 42,
       "advanceRoll": "final",
-      "completion": "Your identity is confirmed. You receive a receipt confirming that confirmation may later be confirmed.",
-      "transition": "Accept the result",
+      "completion": "The employee hands you a blue plastic bucket. It is objectively an excellent bucket. Every previous queue now makes sense.",
+      "transition": "Accept the bucket",
       "events": [
         {
-          "message": "Your number appears. The clerk closes the desk for lunch beneath it. The number remains as a memorial.",
-          "position": 2,
-          "minutes": -7,
+          "message": "The doors open and the queue surges forward. These are the doors to the garden centre. The buckets are at the other entrance.",
+          "position": 3,
+          "minutes": -6,
           "sisu": -5,
           "weight": 1,
           "falseEnding": true
         },
         {
-          "message": "A family has every document in the requested order. The queue experiences hope.",
-          "position": -2,
-          "sisu": 3,
-          "weight": 2
-        },
-        {
-          "message": "The booking system requests a booking reference for the booking system.",
-          "minutes": -6,
-          "discomfort": 4,
+          "message": "Seppo announces that he already owns twelve buckets. This information strengthens nobody.",
+          "sisu": -3,
+          "discomfort": 3,
           "weight": 3
         },
         {
-          "message": "The security guard points to the correct desk before anyone asks. A minor national miracle.",
-          "position": -1,
+          "message": "A rumour says the buckets have lids. Four people call relatives and leave the queue to investigate.",
+          "position": -4,
           "weight": 2
+        },
+        {
+          "message": "Someone offers €20 for your place. You refuse. This stopped being about money before sunrise.",
+          "sisu": 5,
+          "weight": 2
+        },
+        {
+          "message": "Staff count the remaining buckets aloud. The queue achieves a level of attention normally reserved for ski jumping.",
+          "minutes": -5,
+          "discomfort": 5,
+          "weight": 3
         }
       ]
     }
