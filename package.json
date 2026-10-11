@@ -1,11 +1,12 @@
 {
-  "name": "text-adventure-game",
+  "name": "finn-takes-a-number",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "tsx src/cli/index.ts",
     "play": "tsx src/cli/index.ts",
+    "finn-takes-a-number": "tsx src/cli/index.ts",
     "typecheck": "tsc --noEmit",
     "test": "tsx src/test/smoke.ts"
   },
