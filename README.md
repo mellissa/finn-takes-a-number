@@ -1,79 +1,68 @@
+A Finnish adventure awaits! Queue to receive unrewarding benefits in a cold and difficult environment.
+
 # Finn Takes a Number
 
-A TypeScript text adventure about managing patience, anger, and scarce resources across ten everyday queues. Inspired by real-world waiting — from the grocery store to Penn Station.
+Finn Takes a Number is an English-language terminal adventure about getting through eight very Finnish queues. Take a *vuoronumero* (queue number), protect your *sisu* (quiet determination), and attempt to finish ordinary errands without creating a social incident.
 
-## Overview
+The tone is affectionate and deadpan. Finnish places, names, and words appear naturally, with a short explanation when a term first enters play.
 
-You must complete ten queue levels in a single day. Each level starts with people ahead of you. Choose numbered actions to advance, conserve patience, and keep anger under control. Other people in line act each turn and can raise your anger. Clear a level by reaching the front (`People ahead → 0`). Exhaust patience or max out anger and the run ends.
+## The player experience
 
-## Requirements
+Every queue begins with people ahead of you and a closing time. On each turn, choose how Finn responds: wait quietly, study the number display, ask a stranger for help, drink emergency coffee, use a forceful “no niin,” or offer a discreet queue arrangement. A bribe always costs €3.
 
-- [Node.js](https://nodejs.org/) (LTS recommended)
+Your decisions affect five connected pressures:
 
-## Getting started
+- **Queue position** — reach zero people ahead to finish the errand.
+- **Sisu** — the determination left for continuing.
+- **Social discomfort** — reach 100 and Finn must leave before anyone notices.
+- **Time** — if the office closes, the queue wins.
+- **Euros** — a limited resource for the least dignified shortcut.
 
-From this project directory (`finn-takes-a-number` / `text-adventure-game`):
+Queue events can help, delay, or briefly suggest that the ordeal is over. Choices, random surprises, false endings, and unlockable achievements make repeated runs different while keeping each situation recognisably Finnish.
+
+## The eight queues
+
+These descriptions introduce the settings without revealing their surprises:
+
+1. **The Kela Service Centre, Helsinki** — take a number and present a carefully assembled benefits application.
+2. **The Posti Parcel Counter, Tampere** — reconcile a collection message with the physical location of a parcel.
+3. **The Terveysasema Waiting Room, Oulu** — wait for a short health-centre appointment under a very confident clock.
+4. **The Prisma Checkout, Jyväskylä** — choose among several equally plausible supermarket lines.
+5. **The Matkahuolto Bus Platform, Kuopio** — locate the correct coach while *räntä* (wet sleet) locates you.
+6. **Alko Before Juhannus, Turku** — obtain modest Midsummer provisions alongside the rest of Finland.
+7. **The Public Sauna Turn, Helsinki** — respect the handwritten list and wait for *löyly* (sauna steam and heat).
+8. **The Migri Service Point, Espoo** — attend a final appointment with a blue folder and measured optimism.
+
+## Install and play
+
+You need a current Node.js LTS release.
 
 ```bash
+git clone https://github.com/mellissa/finn-takes-a-number.git
+cd finn-takes-a-number
 npm install
 npm run finn-takes-a-number
 ```
 
-`npm start` and `npm run play` also launch this game. Prefer `npm run finn-takes-a-number` if you keep several Node games on the same machine, so the command name matches this project.
+`npm start` and `npm run play` launch the same game. On Windows, `play.bat` is also available.
 
-On Windows, you can also run `play.bat` from this folder.
+Enter the number beside a choice and press Enter. Type `restart` at any time for a new run, or `exit` to leave the queue.
 
-## How to play
+## Development
 
-1. Read the current scene and available actions.
-2. Enter the number of an action and press Enter.
-3. Advance until `People ahead` reaches `0` to finish the level.
-4. Repeat through all ten queues to win.
+The TypeScript engine is independent from the terminal interface. Scenarios, actions, achievements, event weights, costs, deadlines, and other tunable values live in JSON rather than being embedded in the CLI.
 
-Commands available at any time:
-
-- `exit` — quit the game
-- `restart` — start a new run
-
-### Player stats
-
-| Stat | Description |
-|------|-------------|
-| Patience | Remaining capacity to wait |
-| Anger | Stress level; the run ends at 100 |
-| People ahead | Positions remaining until the front of the line |
-| Money | Currency used for bribes ($3 per attempt) |
-| Candy | Alternate resource for advancing |
-
-## Project structure
-
-```
+```text
 src/
   cli/       Terminal interface
-  core/      Game engine, RNG, and NPC logic
-  content/   Scenes, actions, and RNG configuration
-  test/      Smoke tests
+  core/      Reusable game and random-number systems
+  content/   Data-driven scenarios, actions, tuning, and roll definitions
+  test/      Engine and content tests
 ```
 
-Game logic lives in `src/core/` and is independent of the CLI, so another UI can reuse the same engine.
+```bash
+npm test
+npm run typecheck
+```
 
-### Content files
-
-| File | Purpose |
-|------|---------|
-| `src/content/scenes.json` | Levels and scene flow |
-| `src/content/queue-actions.json` | Player actions in queues |
-| `src/content/rng.json` | Roll definitions and success thresholds |
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run finn-takes-a-number` | Launch Finn Takes a Number (recommended) |
-| `npm start` / `npm run play` | Same launch command (shorter aliases) |
-| `npm test` | Run smoke tests |
-| `npm run typecheck` | Run the TypeScript compiler without emitting files |
-
-## Repository
-
-https://github.com/mellissa/finn-takes-a-number
+The game collects no personal data and makes no network requests during play.
